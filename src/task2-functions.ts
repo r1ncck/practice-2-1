@@ -1,3 +1,4 @@
+import { Catalog, Book } from './task1-types';
 // Задание 2: Функции работы с каталогом
 // Управление данными без мутации исходных объектов (иммутабельность)
 
@@ -13,8 +14,7 @@
 // а не изменять существующий. Ключом должно быть свойство book.id.
 export function addBook(catalog: Catalog, book: Book): Catalog {
 
-  return  {
-   // TODO: напишите код здесь
+  return  {...catalog, [book.id]: book,
   };
 }
 
@@ -26,6 +26,8 @@ export function addBook(catalog: Catalog, book: Book): Catalog {
 //  Подсказка: используйте деструктуризацию объекта с вычисляемым ключом и rest-параметром:
 
 export function removeBook(catalog: Catalog, id: string): Catalog {
+  const { [id]: _, ... restCatalog} = catalog
+  return restCatalog;
   // TODO: напишите код здесь
 }
 
@@ -35,5 +37,6 @@ export function removeBook(catalog: Catalog, id: string): Catalog {
 //   - id (string): идентификатор искомой книги
 // Возвращает: объект Book, если книга найдена, или undefined, если её нет
 export function getBook(catalog: Catalog, id: string): Book | undefined {
- // TODO: напишите код здесь
+ // TODO: напишите код здесь\
+ return catalog[id]
 }
